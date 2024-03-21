@@ -84,10 +84,12 @@ def update_post(id:int, post: Post):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="post does not exit")
 
     # if found update
-    old_post = my_posts[index]
+
     post = post.dict()
-    old_post["title"] = post["title"]
-    old_post["content"] = post["content"]
+    post["id"] = id
+
+    my_posts[index] = post
+
 
     print(post)
-    return {"message": "post updated"}
+    return {"message": post}
